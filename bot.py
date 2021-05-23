@@ -148,16 +148,19 @@ def checkout():
     if checkout_time < checkin_time:
         checkout_time = checkout_time + timedelta(hours = 12 )
 
+    hours = (checkout_time - checkin_time).seconds / ( 60 * 60 )
+
     # add row
     ws_vhours.update('A{0}'.format( rows_count + 1 ), memory['first_name'] )
     ws_vhours.update('B{0}'.format( rows_count + 1 ), memory['last_name'] )
     ws_vhours.update('C{0}'.format( rows_count + 1 ), checkin_date )
     ws_vhours.update('D{0}'.format( rows_count + 1 ), checkin_time.strftime("%l:%M %p") )
     ws_vhours.update('E{0}'.format( rows_count + 1 ), checkout_time.strftime("%l:%M %p") )
+    ws_vhours.update('F{0}'.format( rows_count + 1 ), hours )
 
     return {
         'actions': [
-            {'say': 'Thank You. Your time has been logged.'},
+            {'say': 'Thank You. Your time ({0} hours) has been logged.'.format(hours)},
             {
 			     "redirect": "task://goodbye"
 		    }
