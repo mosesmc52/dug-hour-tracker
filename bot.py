@@ -128,7 +128,7 @@ def checkin():
 
 	return {
 		'actions': [
-			{'say': 'Great your checkin time has been logged. Approximately, what time will you be checking out? Enter time in format (HH:MM am or pm)'},
+			{'say': 'Great your checkin time has been logged. Approximately, what time will you be checking out? (Enter time in format such as 5pm or 5:30pm)'},
 			{
 				"remember": {
 					"checkin_time": now.strftime("%m-%d-%Y %H:%M")
@@ -144,6 +144,20 @@ def checkin():
 def checkout():
 	memory = json.loads(request.form['Memory'])
 	rows_count = len( ws_vhours.get_all_values() )
+
+	if not request.form.get('Field_time_Value'):
+		return {
+			'actions': [
+				{ 'say': 'I\'m sorry. I didn\'t understand. Can you input your checkout time again?' },
+				{
+						 "listen": True
+				},
+				{
+					 "redirect": "task://checkout"
+				}
+			]
+		}
+
 
 	# format date time
 	checkin_date = memory['checkin_time'].split(' ')[0]
