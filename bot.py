@@ -178,7 +178,7 @@ def checkout():
 
 	return {
 		'actions': [
-			{'say': 'Your time ({0} hours) has been logged.'.format(hours)},
+			{'say': '{0} hours has been logged as your volunteer time.'.format(hours)},
 			{
 				 "redirect": "task://goodbye"
 			}
