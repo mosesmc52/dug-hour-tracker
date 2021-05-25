@@ -10,7 +10,7 @@ services:
 
   web:
     build: .
-    command: gunicorn --bind 0.0.0.0:5000 bot:bot
+    command: gunicorn --bind 0.0.0.0:5000 bot:app
     ports:
       - 5000:5000
     env_file:
