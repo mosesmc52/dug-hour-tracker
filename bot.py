@@ -20,6 +20,10 @@ ws_vhours = sh.worksheet("Hours")
 
 app = Flask(__name__)
 
+@app.route('/', methods=['GET'])
+def helloworld():
+    return 'Hello, DUG Bot!'
+
 @app.route('/greeting', methods=['POST'])
 def greeting():
     memory = json.loads(request.form['Memory'])
@@ -52,7 +56,7 @@ def greeting():
     return {
                 "actions": [
                     {
-                        "say": "You're new!  I'm farmer Doug. Welcome to DUG community volunteer time tracker. Before I log your time, I need to know your full name."
+                        "say": "You're new!  I'm farmer Doug. Welcome to Denver Urban Gardens (DUG) community volunteer time tracker. Before I log your time, I need to know your full name."
                     },
                     {
                     "collect": {
@@ -124,7 +128,7 @@ def checkin():
 
     return {
         'actions': [
-            {'say': 'Great your checkin time has been logged. Approximately, what time will you be checking out?'},
+            {'say': 'Great your checkin time has been logged. Approximately, what time will you be checking out? Enter time in format (HH:MM am or pm)'},
             {
     			"remember": {
     				"checkin_time": now.strftime("%m-%d-%Y %H:%M")
@@ -160,7 +164,7 @@ def checkout():
 
     return {
         'actions': [
-            {'say': 'Thank You. Your time ({0} hours) has been logged.'.format(hours)},
+            {'say': 'Your time ({0} hours) has been logged.'.format(hours)},
             {
 			     "redirect": "task://goodbye"
 		    }
