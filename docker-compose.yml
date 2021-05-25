@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   nginx:
-    build: .
+    build: ./nginx
     ports:
       - 1337:80
     depends_on:
