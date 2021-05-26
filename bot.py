@@ -166,7 +166,7 @@ def checkout():
 	if checkout_time < checkin_time:
 		checkout_time = checkout_time + timedelta(hours = 12 )
 
-	hours = (checkout_time - checkin_time).seconds / ( 60 * 60 )
+	hours = round((checkout_time - checkin_time).seconds / ( 60 * 60 ), 2)
 
 	# add row
 	ws_vhours.update('A{0}'.format( rows_count + 1 ), memory['first_name'] )
