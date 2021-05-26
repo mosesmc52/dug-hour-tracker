@@ -124,7 +124,7 @@ def fullname():
 def checkin():
 	memory = json.loads(request.form['Memory'])
 
-	now = datetime.now()
+	now = datetime.now() - timedelta( hours = os.environ['OFFSET_HOURS'])
 
 	return {
 		'actions': [
