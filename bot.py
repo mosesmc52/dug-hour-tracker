@@ -128,7 +128,7 @@ def checkin():
 
 	return {
 		'actions': [
-			{'say': 'Great your checkin time has been logged. Approximately, what time will you be checking out? (Enter time in format such as 5pm or 5:30pm)'},
+			{'say': 'Great your checkin time has been logged. Approximately, what time will you be checking out? (Enter time in format such as 5 pm or 5:30 pm)'},
 			{
 				"remember": {
 					"checkin_time": now.strftime("%m-%d-%Y %H:%M")
