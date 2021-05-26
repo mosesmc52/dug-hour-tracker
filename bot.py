@@ -136,6 +136,9 @@ def checkin():
 			},
 			{
 					 "listen": True
+			},
+			{
+				 "redirect": "task://checkout"
 			}
 		]
 	}
